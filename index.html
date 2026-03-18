@@ -136,7 +136,7 @@
   .story { max-width:800px; margin:0 auto 80px; text-align:center; }
   .story h2 { font-family:var(--font-serif); font-size:2rem; margin-bottom:24px; }
   .story p { color:var(--text-muted); line-height:1.8; margin-bottom:16px; font-size:1.05rem; }
-  .values-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:20px; }
+  .values-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
   .value-card { background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:32px; text-align:center; }
   .value-icon { width:52px; height:52px; border-radius:12px; background:rgba(211,47,47,0.1); display:flex; align-items:center; justify-content:center; color:var(--accent); margin:0 auto 16px; }
   .value-icon svg { width:24px; height:24px; stroke:currentColor; stroke-width:1.8; fill:none; stroke-linecap:round; stroke-linejoin:round; }
@@ -221,6 +221,7 @@
 <nav class="nav">
   <a href="#" class="nav-logo" onclick="showPage('home')">Waiheke <span class="accent">WoF</span> Centre</a>
   <ul class="nav-links">
+    <li><a href="#" onclick="showPage('home')">Home</a></li>
     <li><a href="#" onclick="showPage('services')">Services</a></li>
     <li><a href="#" onclick="showPage('booking')">Book Now</a></li>
     <li><a href="#" onclick="showPage('about')">About</a></li>
