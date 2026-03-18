@@ -47,34 +47,36 @@
   .btn-outline:hover { background:var(--accent); color:#fff; }
   .btn-sm { padding:12px 24px; font-size:0.95rem; }
 
-  /* HERO with background image */
-  .hero { min-height:100vh; display:flex; align-items:center; justify-content:center; padding:100px 32px 64px; position:relative; overflow:hidden; text-align:center; }
+  /* HERO — bold dark overlay */
+  .hero { min-height:100vh; display:flex; align-items:center; justify-content:center; padding:120px 32px 80px; position:relative; overflow:hidden; text-align:center; }
   .hero-slideshow { position:absolute; inset:0; z-index:0; }
   .hero-slide { position:absolute; inset:0; opacity:0; transition:opacity 1.5s ease; background-size:cover; background-position:center; }
   .hero-slide.active { opacity:1; }
-  .hero-overlay { position:absolute; inset:0; background:rgba(255,255,255,0.82); z-index:1; }
-  .hero-content { max-width:800px; margin:0 auto; width:100%; position:relative; z-index:2; }
-  .hero-badge { display:inline-flex; align-items:center; gap:8px; background:rgba(211,47,47,0.08); border:1px solid rgba(211,47,47,0.2); border-radius:100px; padding:8px 20px; font-size:0.95rem; color:var(--accent); font-weight:700; margin-bottom:24px; margin-top:8px; }
-  .hero h1 { font-family:var(--font-serif); font-size:clamp(3rem,8vw,6rem); line-height:1.05; letter-spacing:-0.03em; margin-bottom:20px; color:var(--text); }
-  .hero-sub { font-size:1.25rem; color:var(--text-muted); line-height:1.7; margin-bottom:40px; max-width:600px; margin-left:auto; margin-right:auto; }
+  .hero-overlay { position:absolute; inset:0; background:linear-gradient(180deg,rgba(10,10,10,0.7) 0%,rgba(10,10,10,0.8) 60%,rgba(10,10,10,0.92) 100%); z-index:1; }
+  .hero-content { max-width:850px; margin:0 auto; width:100%; position:relative; z-index:2; }
+  .hero-badge { display:inline-flex; align-items:center; gap:8px; background:rgba(211,47,47,0.15); border:1px solid rgba(211,47,47,0.3); border-radius:100px; padding:8px 20px; font-size:0.95rem; color:var(--accent-light); font-weight:700; margin-bottom:32px; }
+  .hero h1 { font-family:var(--font-serif); font-size:clamp(3.2rem,9vw,6.5rem); line-height:1.02; letter-spacing:-0.03em; margin-bottom:12px; color:#fff; }
+  .hero-sub { font-size:1.3rem; color:rgba(255,255,255,0.65); line-height:1.7; margin-bottom:44px; max-width:600px; margin-left:auto; margin-right:auto; }
   .hero-actions { display:flex; gap:16px; flex-wrap:wrap; justify-content:center; }
-  .hero-stats { display:flex; gap:48px; margin-top:56px; padding-top:28px; border-top:1px solid var(--border); justify-content:center; }
-  .hero-stat-val { font-family:var(--font-serif); font-size:2.5rem; color:var(--accent); line-height:1; }
-  .hero-stat-label { font-size:0.9rem; color:var(--text-muted); margin-top:4px; }
+  .hero .btn-secondary { color:#fff; border-color:rgba(255,255,255,0.3); }
+  .hero .btn-secondary:hover { border-color:#fff; background:rgba(255,255,255,0.1); }
+  .hero-stats { display:flex; gap:56px; margin-top:64px; padding-top:32px; border-top:1px solid rgba(255,255,255,0.1); justify-content:center; }
+  .hero-stat-val { font-family:var(--font-serif); font-size:2.8rem; color:var(--accent-light); line-height:1; }
+  .hero-stat-label { font-size:0.9rem; color:rgba(255,255,255,0.5); margin-top:6px; }
 
-  /* SERVICES GRID */
+  /* SERVICES — 2-column large cards */
   .services-section { padding:96px 32px; background:var(--surface); border-top:1px solid var(--border); border-bottom:1px solid var(--border); }
   .services-header { margin-bottom:48px; text-align:center; }
   .services-header h2 { font-family:var(--font-serif); font-size:clamp(2.2rem,5vw,3.5rem); line-height:1.1; margin-bottom:16px; }
   .services-header h2 em { font-style:italic; color:var(--accent); }
   .services-header p { color:var(--text-muted); max-width:600px; font-size:1.1rem; margin:0 auto; }
-  .services-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(260px,1fr)); gap:20px; }
-  .service-card { background:var(--bg); border:1px solid var(--border); border-radius:16px; padding:32px; transition:all 0.3s; text-align:center; }
-  .service-card:hover { border-color:rgba(211,47,47,0.3); transform:translateY(-3px); }
-  .service-icon { width:56px; height:56px; border-radius:12px; background:rgba(211,47,47,0.1); display:flex; align-items:center; justify-content:center; margin:0 auto 16px; color:var(--accent); }
+  .services-grid { display:grid; grid-template-columns:1fr 1fr; gap:24px; }
+  .service-card { background:var(--bg); border:1px solid var(--border); border-radius:20px; padding:40px; transition:all 0.3s; display:flex; gap:24px; align-items:flex-start; text-align:left; }
+  .service-card:hover { border-color:rgba(211,47,47,0.3); transform:translateY(-3px); box-shadow:0 12px 40px rgba(0,0,0,0.06); }
+  .service-icon { width:60px; height:60px; border-radius:14px; background:rgba(211,47,47,0.1); display:flex; align-items:center; justify-content:center; color:var(--accent); flex-shrink:0; }
   .service-icon svg { width:28px; height:28px; stroke:currentColor; stroke-width:1.8; fill:none; stroke-linecap:round; stroke-linejoin:round; }
-  .service-card h3 { font-size:1.15rem; font-weight:700; margin-bottom:8px; }
-  .service-card p { color:var(--text-muted); font-size:0.9rem; line-height:1.6; }
+  .service-card h3 { font-size:1.2rem; font-weight:700; margin-bottom:8px; }
+  .service-card p { color:var(--text-muted); font-size:0.95rem; line-height:1.6; }
 
   /* TESTIMONIALS */
   .testimonials-section { padding:96px 32px; background:var(--bg); text-align:center; }
@@ -201,6 +203,8 @@
     .hero-stats { flex-direction:column; gap:20px; }
     .hero-actions, .cta-actions { flex-direction:column; align-items:center; }
     .services-grid, .testimonials-grid, .values-grid { grid-template-columns:1fr; }
+    .service-card { flex-direction:column; text-align:center; }
+    .service-icon { margin:0 auto; }
     .form-grid { grid-template-columns:1fr; }
     .contact-grid { grid-template-columns:1fr; }
     .footer-grid { grid-template-columns:1fr; text-align:center; }
@@ -275,33 +279,27 @@
       <div class="services-grid">
         <div class="service-card">
           <div class="service-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg></div>
-          <h3>WoF Inspections</h3>
-          <p>Warrant of Fitness inspections for all light vehicles. Thorough and affordable.</p>
+          <div><h3>WoF Inspections</h3><p>Warrant of Fitness inspections for all light vehicles. Thorough checks covering safety, emissions, and roadworthiness.</p></div>
         </div>
         <div class="service-card">
           <div class="service-icon"><svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>
-          <h3>Full Servicing</h3>
-          <p>Oil changes, filters, brakes, and complete mechanical assessments.</p>
+          <div><h3>Full Servicing</h3><p>Oil changes, filters, brakes, fluid top-ups, and complete mechanical assessments to keep things running smoothly.</p></div>
         </div>
         <div class="service-card">
           <div class="service-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg></div>
-          <h3>Repairs &amp; Diagnostics</h3>
-          <p>Engine diagnostics, brake repairs, suspension work, and everything in between.</p>
+          <div><h3>Repairs &amp; Diagnostics</h3><p>Engine diagnostics, brake repairs, suspension, clutch work, and general mechanical. Honest assessment before any work starts.</p></div>
         </div>
         <div class="service-card">
           <div class="service-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
-          <h3>Tyres</h3>
-          <p>Fitting, balancing, rotation, and replacement for all budgets.</p>
+          <div><h3>Tyres</h3><p>Fitting, balancing, rotation, and replacement. A range of tyres to suit different budgets and island driving conditions.</p></div>
         </div>
         <div class="service-card">
           <div class="service-icon"><svg viewBox="0 0 24 24"><path d="M1 3h15v13H1z"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
-          <h3>Towing</h3>
-          <p>AA and partner towing across Waiheke. Broken down? We'll come to you.</p>
+          <div><h3>Towing</h3><p>AA and partner towing across Waiheke Island. Broken down? Call us and we'll get your vehicle to the workshop.</p></div>
         </div>
         <div class="service-card">
           <div class="service-icon"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3"/></svg></div>
-          <h3>Vehicle Diagnostics</h3>
-          <p>Modern equipment to pinpoint engine faults, warning lights, and electrical issues.</p>
+          <div><h3>Vehicle Diagnostics</h3><p>Modern diagnostic tools to pinpoint engine faults, warning lights, electrical issues, and performance problems.</p></div>
         </div>
       </div>
     </div>
