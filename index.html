@@ -86,23 +86,39 @@
   .testimonial-card blockquote { color:var(--text-muted); line-height:1.7; flex:1; margin-bottom:20px; font-size:1rem; }
   .testimonial-card cite { font-size:0.9rem; font-weight:700; color:var(--text); font-style:normal; }
 
-  /* AI ASSISTANT BOX */
-  .ai-box { background:var(--surface); border:1px solid var(--border); border-radius:16px; overflow:hidden; }
-  .ai-box-header { display:flex; align-items:center; justify-content:center; gap:10px; padding:16px 20px; border-bottom:1px solid var(--border); background:var(--surface-2); }
-  .ai-dot { width:8px; height:8px; background:var(--accent); border-radius:50%; animation:pulse 2s infinite; }
+  /* CHATBOT WIDGET */
+  .chat-fab { position:fixed; bottom:28px; right:28px; z-index:100; width:64px; height:64px; border-radius:50%; background:var(--accent); color:#fff; border:none; cursor:pointer; box-shadow:0 4px 20px rgba(211,47,47,0.35); display:flex; align-items:center; justify-content:center; transition:all 0.3s; }
+  .chat-fab:hover { background:var(--accent-dark); transform:scale(1.08); box-shadow:0 6px 28px rgba(211,47,47,0.45); }
+  .chat-fab svg { width:28px; height:28px; fill:#fff; }
+  .chat-fab .close-icon { display:none; }
+  .chat-fab.open .chat-icon { display:none; }
+  .chat-fab.open .close-icon { display:block; }
+  .chat-fab.open { border-radius:50%; }
+  .chat-prompt { position:fixed; bottom:100px; right:28px; z-index:99; background:#fff; border:1px solid var(--border); border-radius:16px 16px 4px 16px; padding:14px 20px; box-shadow:0 4px 24px rgba(0,0,0,0.1); max-width:280px; animation:chatSlideUp 0.4s ease; cursor:pointer; transition:opacity 0.3s; }
+  .chat-prompt p { font-size:0.9rem; color:var(--text); line-height:1.5; margin:0; }
+  .chat-prompt .prompt-label { font-size:0.7rem; text-transform:uppercase; letter-spacing:0.1em; color:var(--accent); font-weight:700; margin-bottom:4px; }
+  .chat-window { position:fixed; bottom:100px; right:28px; z-index:100; width:380px; max-height:520px; background:#fff; border:1px solid var(--border); border-radius:20px; box-shadow:0 8px 40px rgba(0,0,0,0.12); display:none; flex-direction:column; overflow:hidden; animation:chatSlideUp 0.3s ease; }
+  .chat-window.open { display:flex; }
+  .chat-header { background:var(--accent); color:#fff; padding:18px 20px; display:flex; align-items:center; gap:12px; }
+  .chat-header-dot { width:10px; height:10px; background:rgba(255,255,255,0.5); border-radius:50%; animation:pulse 2s infinite; }
   @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:0.4;} }
-  .ai-box-header span { font-size:0.9rem; font-weight:700; }
-  .ai-box-body { padding:24px; text-align:center; }
-  .ai-box-body p { color:var(--text-muted); font-size:0.95rem; line-height:1.6; margin-bottom:16px; }
-  .ai-input-row { display:flex; gap:8px; }
-  .ai-input { flex:1; padding:12px 16px; background:var(--bg); border:2px solid var(--border); border-radius:10px; font-size:0.95rem; color:var(--text); font-family:var(--font-sans); outline:none; transition:border-color 0.2s; }
-  .ai-input:focus { border-color:var(--accent); }
-  .ai-input::placeholder { color:rgba(138,134,128,0.5); }
-  .ai-send { background:var(--accent); color:#fff; border:none; padding:12px 20px; border-radius:10px; font-weight:700; font-size:0.95rem; cursor:pointer; font-family:var(--font-sans); transition:background 0.2s; }
-  .ai-send:hover { background:var(--accent-dark); }
-  .ai-quick-btns { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:12px; justify-content:center; }
-  .ai-quick { padding:8px 18px; border-radius:100px; border:1px solid var(--border); background:var(--bg); color:var(--text-muted); font-size:0.85rem; cursor:pointer; font-family:var(--font-sans); transition:all 0.2s; }
-  .ai-quick:hover { border-color:var(--accent); color:var(--accent); }
+  .chat-header-info h4 { font-size:0.95rem; font-weight:700; margin:0; }
+  .chat-header-info p { font-size:0.75rem; opacity:0.7; margin:0; }
+  .chat-messages { flex:1; overflow-y:auto; padding:16px; display:flex; flex-direction:column; gap:12px; min-height:280px; max-height:340px; }
+  .chat-msg { max-width:85%; padding:12px 16px; border-radius:16px; font-size:0.9rem; line-height:1.5; }
+  .chat-msg.bot { background:var(--surface); color:var(--text); align-self:flex-start; border-bottom-left-radius:4px; }
+  .chat-msg.user { background:var(--accent); color:#fff; align-self:flex-end; border-bottom-right-radius:4px; }
+  .chat-suggestions { display:flex; flex-wrap:wrap; gap:6px; padding:0 16px 12px; }
+  .chat-suggest-btn { padding:6px 14px; border-radius:100px; border:1px solid var(--border); background:#fff; color:var(--text-muted); font-size:0.8rem; cursor:pointer; font-family:var(--font-sans); transition:all 0.2s; }
+  .chat-suggest-btn:hover { border-color:var(--accent); color:var(--accent); }
+  .chat-input-bar { display:flex; gap:8px; padding:12px 16px; border-top:1px solid var(--border); background:#fff; }
+  .chat-input-bar input { flex:1; padding:10px 14px; border:2px solid var(--border); border-radius:10px; font-size:0.9rem; color:var(--text); font-family:var(--font-sans); outline:none; transition:border-color 0.2s; }
+  .chat-input-bar input:focus { border-color:var(--accent); }
+  .chat-input-bar input::placeholder { color:rgba(138,134,128,0.5); }
+  .chat-input-bar button { background:var(--accent); color:#fff; border:none; padding:10px 16px; border-radius:10px; font-weight:700; font-size:0.85rem; cursor:pointer; font-family:var(--font-sans); transition:background 0.2s; }
+  .chat-input-bar button:hover { background:var(--accent-dark); }
+  @keyframes chatSlideUp { from{opacity:0;transform:translateY(16px);} to{opacity:1;transform:translateY(0);} }
+  @media (max-width:480px) { .chat-window { width:calc(100vw - 24px); right:12px; bottom:88px; } .chat-fab { bottom:16px; right:16px; } .chat-prompt { right:16px; bottom:88px; } }
 
   /* CTA */
   .cta-section { padding:96px 32px; background:var(--surface); border-top:1px solid var(--border); border-bottom:1px solid var(--border); }
@@ -306,30 +322,6 @@
     </div>
   </section>
 
-  <!-- AI-Powered Quick Help -->
-  <section style="padding:0 32px 96px;">
-    <div class="container" style="max-width:700px;">
-      <div class="ai-box">
-        <div class="ai-box-header">
-          <div class="ai-dot"></div>
-          <span>Quick Help — Ask us anything</span>
-        </div>
-        <div class="ai-box-body">
-          <p>Not sure what service you need, or whether we can work on your vehicle? Ask below and get an instant answer.</p>
-          <div class="ai-quick-btns">
-            <button class="ai-quick" onclick="aiDemo(this,'euro')">Can you work on my Euro car?</button>
-            <button class="ai-quick" onclick="aiDemo(this,'wof')">How do I book a WoF?</button>
-            <button class="ai-quick" onclick="aiDemo(this,'price')">What does a service cost?</button>
-          </div>
-          <div class="ai-input-row">
-            <input class="ai-input" placeholder="e.g. Can you fix my BMW 320i air con?">
-            <button class="ai-send">Ask</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- Testimonials -->
   <section class="testimonials-section">
     <div class="container">
@@ -431,31 +423,11 @@
     </div>
   </section>
 
-  <!-- Euro Car AI Helper -->
+  <!-- Notice -->
   <section style="padding:0 32px 96px;">
-    <div class="container" style="max-width:600px;">
-      <div class="ai-box">
-        <div class="ai-box-header">
-          <div class="ai-dot"></div>
-          <span>Can we work on your vehicle?</span>
-        </div>
-        <div class="ai-box-body">
-          <p>We work on most makes and models. Select yours below or type in your vehicle to check:</p>
-          <div class="ai-quick-btns">
-            <button class="ai-quick" onclick="aiDemo(this,'jap')">Toyota / Honda / Suzuki</button>
-            <button class="ai-quick" onclick="aiDemo(this,'vw')">VW / Skoda / Subaru</button>
-            <button class="ai-quick" onclick="aiDemo(this,'bmw')">BMW / Mercedes / Audi</button>
-          </div>
-          <div class="ai-input-row">
-            <input class="ai-input" placeholder="e.g. 2019 BMW X3 — air con not working">
-            <button class="ai-send">Check</button>
-          </div>
-        </div>
-      </div>
-      <div style="margin-top:16px;">
-        <div class="notice-bar">
-          <strong>Note:</strong> Head gasket repairs and specialist auto electrical work are not currently available. We can refer you if needed.
-        </div>
+    <div class="container" style="max-width:700px;">
+      <div class="notice-bar">
+        <strong>Note:</strong> Head gasket repairs and specialist auto electrical work are not currently available. We can refer you if needed.
       </div>
     </div>
   </section>
@@ -494,22 +466,6 @@
     </div>
   </section>
 
-  <!-- Pricing quick ref -->
-  <section style="padding:16px 32px 96px;">
-    <div style="max-width:800px;margin:0 auto;">
-      <div class="ai-box">
-        <div class="ai-box-header"><div class="ai-dot"></div><span>Get a quick cost estimate</span></div>
-        <div class="ai-box-body">
-          <p>Wondering what it might cost? Describe what you need and we'll give you a ballpark figure.</p>
-          <div class="ai-input-row">
-            <input class="ai-input" placeholder="e.g. Full service on a 2015 Mazda 3">
-            <button class="ai-send">Estimate</button>
-          </div>
-          <p class="price-disclaimer" style="margin-top:12px;">* Estimates are approximate. We'll confirm the exact price before starting any work.</p>
-        </div>
-      </div>
-    </div>
-  </section>
 </div>
 
 
@@ -599,26 +555,6 @@
     </div>
   </section>
 
-  <!-- AI Contact Helper -->
-  <section style="padding:32px 32px 96px;">
-    <div class="container" style="max-width:600px;">
-      <div class="ai-box">
-        <div class="ai-box-header"><div class="ai-dot"></div><span>Need a quick answer?</span></div>
-        <div class="ai-box-body">
-          <p>Ask us anything about our services, hours, pricing, or what we can help with — no need to wait for a call back.</p>
-          <div class="ai-quick-btns">
-            <button class="ai-quick" onclick="aiDemo(this,'hours')">What are your hours?</button>
-            <button class="ai-quick" onclick="aiDemo(this,'book')">How do I book?</button>
-            <button class="ai-quick" onclick="aiDemo(this,'tow')">I need a tow</button>
-          </div>
-          <div class="ai-input-row">
-            <input class="ai-input" placeholder="Ask anything...">
-            <button class="ai-send">Ask</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 </div>
 
 
@@ -670,20 +606,6 @@
     </div>
   </section>
 
-  <section style="padding:0 32px 96px;">
-    <div style="max-width:600px;margin:0 auto;">
-      <div class="ai-box">
-        <div class="ai-box-header"><div class="ai-dot"></div><span>Can't find your answer?</span></div>
-        <div class="ai-box-body">
-          <p>Ask our AI assistant — it knows everything about our services, pricing, and procedures.</p>
-          <div class="ai-input-row">
-            <input class="ai-input" placeholder="Ask anything about our services...">
-            <button class="ai-send">Ask</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 </div>
 
 
@@ -722,6 +644,40 @@
   </div>
 </footer>
 
+<!-- CHATBOT WIDGET -->
+<div class="chat-prompt" id="chatPrompt" onclick="openChat()" style="display:none;">
+  <div class="prompt-label">Waiheke WoF Centre</div>
+  <p>Hey! Need help with a booking, WoF, or have a question? Ask away.</p>
+</div>
+
+<div class="chat-window" id="chatWindow">
+  <div class="chat-header">
+    <div class="chat-header-dot"></div>
+    <div class="chat-header-info">
+      <h4>Waiheke WoF Centre</h4>
+      <p>Usually replies instantly</p>
+    </div>
+  </div>
+  <div class="chat-messages" id="chatMessages">
+    <div class="chat-msg bot">Hey! Welcome to Waiheke WoF Centre. How can I help you today?</div>
+  </div>
+  <div class="chat-suggestions" id="chatSuggestions">
+    <button class="chat-suggest-btn" onclick="chatSend('Book a WoF')">Book a WoF</button>
+    <button class="chat-suggest-btn" onclick="chatSend('What do you charge?')">Pricing</button>
+    <button class="chat-suggest-btn" onclick="chatSend('Can you work on my car?')">Vehicle check</button>
+    <button class="chat-suggest-btn" onclick="chatSend('What are your hours?')">Hours</button>
+  </div>
+  <div class="chat-input-bar">
+    <input id="chatInput" placeholder="Type a message..." onkeydown="if(event.key==='Enter')chatSend()">
+    <button onclick="chatSend()">Send</button>
+  </div>
+</div>
+
+<button class="chat-fab" id="chatFab" onclick="toggleChat()">
+  <svg class="chat-icon" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+  <svg class="close-icon" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12" stroke="#fff" stroke-width="2.5" stroke-linecap="round" fill="none"/></svg>
+</button>
+
 <script>
 function showPage(page) {
   if(event) event.preventDefault();
@@ -753,30 +709,94 @@ if(slides.length > 1) {
   }, 5000);
 }
 
-// AI Demo responses
-function aiDemo(btn, type) {
-  const responses = {
-    euro: "Most European vehicles — yes! We handle general mechanical, servicing, and WoFs for BMW, Audi, Mercedes, VW, etc. Some specialist Euro-only work (like certain electrical systems) may be limited. Call us on 09 372 3270 to check your specific situation.",
-    wof: "Easy — just use our online booking form or call 09 372 3270. Current lead time for WoF inspections is about 4–6 weeks, so we'd recommend booking early.",
-    price: "It depends on what you need! WoF ~$75, basic service from ~$180, full service from ~$350. We always confirm the price before starting. Check the Services page for a full guide.",
-    bmw: "We can do general mechanical work, servicing, WoFs, brakes, and diagnostics on BMW, Mercedes, and Audi. Some specialist systems may need a Euro-specific workshop — call us and we'll be upfront about what we can and can't do.",
-    vw: "VW, Skoda, and Subaru — yes, no problem. These are straightforward for us. Book in as normal.",
-    jap: "Toyota, Honda, Suzuki — absolutely. These are our bread and butter. Book in anytime.",
-    hours: "We're open Mon–Fri, 8am to 5pm. Saturdays by appointment. Closed Sundays.",
-    book: "You can book through the form on our Booking page, or call us on 09 372 3270. We'll confirm your spot within 1 business day.",
-    tow: "Call us right away on 09 372 3270 — we do same-day towing across Waiheke through our AA and partner network."
-  };
-  const box = btn.closest('.ai-box-body');
-  let existing = box.querySelector('.ai-response');
-  if(existing) existing.remove();
+// Chatbot
+let chatOpen = false;
+let promptShown = false;
+let promptDismissed = false;
+
+// Show prompt bubble after 15 seconds
+setTimeout(() => {
+  if(!chatOpen && !promptDismissed) {
+    document.getElementById('chatPrompt').style.display = 'block';
+    promptShown = true;
+  }
+}, 15000);
+
+function toggleChat() {
+  chatOpen = !chatOpen;
+  document.getElementById('chatWindow').classList.toggle('open', chatOpen);
+  document.getElementById('chatFab').classList.toggle('open', chatOpen);
+  // Hide prompt when chat opens
+  if(chatOpen) {
+    document.getElementById('chatPrompt').style.display = 'none';
+    promptDismissed = true;
+  }
+}
+
+function openChat() {
+  document.getElementById('chatPrompt').style.display = 'none';
+  promptDismissed = true;
+  if(!chatOpen) toggleChat();
+}
+
+function chatSend(text) {
+  const input = document.getElementById('chatInput');
+  const msg = text || input.value.trim();
+  if(!msg) return;
+  input.value = '';
+
+  // Hide suggestions after first message
+  document.getElementById('chatSuggestions').style.display = 'none';
+
+  // Add user message
+  addChatMsg(msg, 'user');
+
+  // Simulate typing delay
+  setTimeout(() => {
+    const reply = getChatReply(msg);
+    addChatMsg(reply, 'bot');
+  }, 600 + Math.random() * 400);
+}
+
+function addChatMsg(text, type) {
+  const container = document.getElementById('chatMessages');
   const div = document.createElement('div');
-  div.className = 'ai-response';
-  div.style.cssText = 'margin-top:16px;padding:16px 20px;background:var(--bg);border:1px solid var(--border);border-radius:10px;font-size:0.95rem;color:var(--text);line-height:1.6;animation:fadeIn 0.3s ease;text-align:left;';
-  div.innerHTML = '<strong style="color:var(--accent);font-size:0.75rem;text-transform:uppercase;letter-spacing:0.1em;display:block;margin-bottom:6px;">AI Assistant</strong>' + (responses[type] || "I'd be happy to help with that! For specific questions, please call us on 09 372 3270.");
-  box.appendChild(div);
+  div.className = 'chat-msg ' + type;
+  div.textContent = text;
+  div.style.animation = 'chatSlideUp 0.3s ease';
+  container.appendChild(div);
+  container.scrollTop = container.scrollHeight;
+}
+
+function getChatReply(msg) {
+  const m = msg.toLowerCase();
+  if(m.includes('wof') || m.includes('warrant'))
+    return "WoF inspections are around $75 and most are done same day once booked. Current lead time is about 4\u20136 weeks. You can book through our Booking page or call 09 372 3270.";
+  if(m.includes('book'))
+    return "You can book through the form on our Booking page, or call us on 09 372 3270. We'll confirm your spot within 1 business day.";
+  if(m.includes('price') || m.includes('cost') || m.includes('charg') || m.includes('how much'))
+    return "WoF ~$75, basic service from ~$180, full service from ~$350. We always confirm the price before starting any work. These are estimates \u2014 actual cost depends on your vehicle.";
+  if(m.includes('hour') || m.includes('open') || m.includes('close'))
+    return "We're open Mon\u2013Fri, 8am to 5pm. Saturdays by appointment. Closed Sundays.";
+  if(m.includes('tow') || m.includes('break') || m.includes('stuck'))
+    return "Call us right away on 09 372 3270 \u2014 we do same-day towing across Waiheke through our AA and partner network.";
+  if(m.includes('bmw') || m.includes('mercedes') || m.includes('audi') || m.includes('euro'))
+    return "We can do general mechanical work, servicing, WoFs, brakes, and diagnostics on European vehicles. Some specialist systems may need a Euro-specific workshop \u2014 call us and we'll be upfront.";
+  if(m.includes('toyota') || m.includes('honda') || m.includes('suzuki') || m.includes('mazda') || m.includes('nissan'))
+    return "Absolutely \u2014 Japanese vehicles are our bread and butter. Book in anytime!";
+  if(m.includes('vw') || m.includes('volkswagen') || m.includes('subaru') || m.includes('skoda'))
+    return "VW, Skoda, Subaru \u2014 no problem at all. These are straightforward for us. Book in as normal.";
+  if(m.includes('where') || m.includes('location') || m.includes('address') || m.includes('find'))
+    return "We're at 9 Tahi Road, Waiheke Island. Easy to find \u2014 check our Contact page for a map!";
+  if(m.includes('service') || m.includes('oil') || m.includes('filter'))
+    return "We do everything from basic to full servicing \u2014 oil, filters, brakes, fluid top-ups, the lot. Basic service from ~$180, full service from ~$350.";
+  if(m.includes('tyre') || m.includes('tire'))
+    return "We do tyre fitting, balancing, rotation, and replacement. Fitting starts from ~$25 per tyre. We stock a range to suit different budgets.";
+  if(m.includes('diagnos'))
+    return "Diagnostic scans start from around $80. We use modern tools to pinpoint engine faults, warning lights, and electrical issues quickly.";
+  return "Great question! For anything specific, give us a call on 09 372 3270 or use the booking form. We're happy to help!";
 }
 </script>
-<style>@keyframes fadeIn { from{opacity:0;transform:translateY(8px);} to{opacity:1;transform:translateY(0);} }</style>
 
 </body>
 </html>
