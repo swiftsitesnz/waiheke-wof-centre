@@ -3,7 +3,7 @@
 // 1. Auto-reply to customer
 // 2. Booking notification to Charity at WOF Centre
 
-const RESEND_API_KEY = process.env.RESEND_API_KEY || 're_WYxGRiaw_DFLftk3f6uqVNxr61snegQuV';
+const RESEND_API_KEY = process.env.RESEND_API_KEY || 'RESEND_API_KEY_HERE';
 const FROM = 'Waiheke WoF Centre <noreply@swiftsites.nz>';
 const NOTIFY_EMAIL = 'officeadmin@waihekewofcentre.co.nz';
 
