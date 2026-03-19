@@ -806,7 +806,9 @@ function openChat() {
   if(!chatOpen) toggleChat();
 }
 
-function chatSend(text) {
+let chatHistory = [];
+
+async function chatSend(text) {
   const input = document.getElementById('chatInput');
   const msg = text || input.value.trim();
   if(!msg) return;
@@ -817,12 +819,26 @@ function chatSend(text) {
 
   // Add user message
   addChatMsg(msg, 'user');
+  chatHistory.push({ role: 'user', content: msg });
 
-  // Simulate typing delay
-  setTimeout(() => {
-    const reply = getChatReply(msg);
+  // Show typing indicator
+  const typing = addChatMsg('...', 'bot typing');
+
+  try {
+    const res = await fetch('/api/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ message: msg, history: chatHistory.slice(-6) })
+    });
+    const data = await res.json();
+    const reply = data.reply || "Give us a call on 09 372 3270 and we'll help you out!";
+    typing.remove();
     addChatMsg(reply, 'bot');
-  }, 600 + Math.random() * 400);
+    chatHistory.push({ role: 'assistant', content: reply });
+  } catch(err) {
+    typing.remove();
+    addChatMsg("Sorry, having a moment! Call us on 09 372 3270 and we'll sort you out.", 'bot');
+  }
 }
 
 function addChatMsg(text, type) {
@@ -833,35 +849,7 @@ function addChatMsg(text, type) {
   div.style.animation = 'chatSlideUp 0.3s ease';
   container.appendChild(div);
   container.scrollTop = container.scrollHeight;
-}
-
-function getChatReply(msg) {
-  const m = msg.toLowerCase();
-  if(m.includes('wof') || m.includes('warrant'))
-    return "WoF inspections are around $75 and most are done same day once booked. Current lead time is about 4\u20136 weeks. You can book through our Booking page or call 09 372 3270.";
-  if(m.includes('book'))
-    return "You can book through the form on our Booking page, or call us on 09 372 3270. We'll confirm your spot within 1 business day.";
-  if(m.includes('price') || m.includes('cost') || m.includes('charg') || m.includes('how much'))
-    return "WoF ~$75, basic service from ~$180, full service from ~$350. We always confirm the price before starting any work. These are estimates \u2014 actual cost depends on your vehicle.";
-  if(m.includes('hour') || m.includes('open') || m.includes('close'))
-    return "We're open Mon\u2013Fri, 8am to 5pm. Saturdays by appointment. Closed Sundays.";
-  if(m.includes('tow') || m.includes('break') || m.includes('stuck'))
-    return "Call us right away on 09 372 3270 \u2014 we do same-day towing across Waiheke through our AA and partner network.";
-  if(m.includes('bmw') || m.includes('mercedes') || m.includes('audi') || m.includes('euro'))
-    return "We can do general mechanical work, servicing, WoFs, brakes, and diagnostics on European vehicles. Some specialist systems may need a Euro-specific workshop \u2014 call us and we'll be upfront.";
-  if(m.includes('toyota') || m.includes('honda') || m.includes('suzuki') || m.includes('mazda') || m.includes('nissan'))
-    return "Absolutely \u2014 Japanese vehicles are our bread and butter. Book in anytime!";
-  if(m.includes('vw') || m.includes('volkswagen') || m.includes('subaru') || m.includes('skoda'))
-    return "VW, Skoda, Subaru \u2014 no problem at all. These are straightforward for us. Book in as normal.";
-  if(m.includes('where') || m.includes('location') || m.includes('address') || m.includes('find'))
-    return "We're at 9 Tahi Road, Waiheke Island. Easy to find \u2014 check our Contact page for a map!";
-  if(m.includes('service') || m.includes('oil') || m.includes('filter'))
-    return "We do everything from basic to full servicing \u2014 oil, filters, brakes, fluid top-ups, the lot. Basic service from ~$180, full service from ~$350.";
-  if(m.includes('tyre') || m.includes('tire'))
-    return "We do tyre fitting, balancing, rotation, and replacement. Fitting starts from ~$25 per tyre. We stock a range to suit different budgets.";
-  if(m.includes('diagnos'))
-    return "Diagnostic scans start from around $80. We use modern tools to pinpoint engine faults, warning lights, and electrical issues quickly.";
-  return "Great question! For anything specific, give us a call on 09 372 3270 or use the booking form. We're happy to help!";
+  return div;
 }
 
 // Scroll reveal
