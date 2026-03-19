@@ -452,17 +452,24 @@
       </div>
     </div>
     <div class="form-wrap">
-      <div class="form-grid">
-        <div class="form-group"><label class="form-label">Your Name *</label><input class="form-input" placeholder="e.g. John Smith"></div>
-        <div class="form-group"><label class="form-label">Phone Number *</label><input class="form-input" placeholder="e.g. 021 123 4567"></div>
-        <div class="form-group"><label class="form-label">Email</label><input class="form-input" placeholder="e.g. john@email.com"></div>
-        <div class="form-group"><label class="form-label">Vehicle (make, model, year) *</label><input class="form-input" placeholder="e.g. Toyota Corolla 2018"></div>
-        <div class="form-group full"><label class="form-label">What do you need? *</label>
-          <select class="form-select"><option value="">Select a service...</option><option>WoF Inspection</option><option>Full Service</option><option>Repairs / Diagnostics</option><option>Tyres</option><option>Towing</option><option>Other</option></select>
+      <form id="bookingForm" action="https://formsubmit.co/officeadmin@waihekewofcentre.co.nz" method="POST">
+        <input type="hidden" name="_subject" value="New Booking Request — Waiheke WoF Centre">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_template" value="table">
+        <input type="text" name="_honey" style="display:none">
+        <input type="hidden" name="_next" id="wofFormRedirect">
+        <div class="form-grid">
+          <div class="form-group"><label class="form-label">Your Name *</label><input class="form-input" name="Name" placeholder="e.g. John Smith"></div>
+          <div class="form-group"><label class="form-label">Phone Number *</label><input class="form-input" name="Phone" placeholder="e.g. 021 123 4567"></div>
+          <div class="form-group"><label class="form-label">Email</label><input class="form-input" name="Email" placeholder="e.g. john@email.com"></div>
+          <div class="form-group"><label class="form-label">Vehicle (make, model, year) *</label><input class="form-input" name="Vehicle" placeholder="e.g. Toyota Corolla 2018"></div>
+          <div class="form-group full"><label class="form-label">What do you need? *</label>
+            <select class="form-select" name="Service"><option value="">Select a service...</option><option>WoF Inspection</option><option>Full Service</option><option>Repairs / Diagnostics</option><option>Tyres</option><option>Towing</option><option>Other</option></select>
+          </div>
+          <div class="form-group full"><label class="form-label">Any details or preferred dates?</label><textarea class="form-textarea" name="Details" placeholder="Tell us about the issue, when suits you, etc."></textarea></div>
         </div>
-        <div class="form-group full"><label class="form-label">Any details or preferred dates?</label><textarea class="form-textarea" placeholder="Tell us about the issue, when suits you, etc."></textarea></div>
-      </div>
-      <button class="btn btn-primary" onclick="alert('Booking submitted! (Demo)')">Send Booking Request</button>
+        <button type="submit" class="btn btn-primary">Send Booking Request</button>
+      </form>
     </div>
   </section>
 
@@ -485,9 +492,9 @@
   <section style="padding:0 32px 48px;">
     <div class="container">
       <div style="border-radius:20px; overflow:hidden; box-shadow:0 4px 24px rgba(0,0,0,0.10);">
-        <img src="https://www.shutterstock.com/shutterstock/photos/1189039066/display_1500/stock-photo-portrait-of-auto-shop-mechanics-group-together-employee-1189039066.jpg" alt="The Waiheke WoF Centre team" style="width:100%; height:400px; display:block; object-fit:cover; object-position:center 20%;">
+        <img src="team-placeholder.jpg" alt="The Waiheke WoF Centre team" style="width:100%; height:400px; display:block; object-fit:cover; object-position:center 20%;">
       </div>
-      <p style="text-align:center; margin-top:12px; font-size:0.9rem; color:var(--text-muted);">The crew at Waiheke WoF Centre — placeholder image</p>
+      <p style="text-align:center; margin-top:12px; font-size:0.9rem; color:var(--text-muted);">The team at Waiheke WoF Centre</p>
     </div>
   </section>
 
@@ -549,7 +556,7 @@
         </div>
         <!-- Google Maps -->
         <div style="border-radius:16px;overflow:hidden;min-height:400px;border:1px solid var(--border);">
-          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3189.5!2d175.108!3d-36.793!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6d72c8f0e6d0e4ab%3A0x0!2s9+Tahi+Road%2C+Waiheke+Island!5e0!3m2!1sen!2snz!4v1" width="100%" height="100%" style="border:0;min-height:400px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <iframe src="https://maps.google.com/maps?q=9+Tahi+Road,+Waiheke+Island,+Auckland&output=embed&hl=en" width="100%" height="100%" style="border:0;min-height:400px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
       </div>
     </div>
@@ -795,6 +802,16 @@ function getChatReply(msg) {
   if(m.includes('diagnos'))
     return "Diagnostic scans start from around $80. We use modern tools to pinpoint engine faults, warning lights, and electrical issues quickly.";
   return "Great question! For anything specific, give us a call on 09 372 3270 or use the booking form. We're happy to help!";
+}
+
+// Booking form redirect and success handling
+document.getElementById('wofFormRedirect').value = window.location.href;
+if (window.location.search.includes('submitted=true')) {
+  document.getElementById('bookingForm').style.display = 'none';
+  var successMsg = document.createElement('div');
+  successMsg.style.cssText = 'text-align:center;padding:48px 24px;font-size:1.2rem;color:var(--text);';
+  successMsg.innerHTML = '<strong style="font-size:1.5rem;">✅ Booking request sent!</strong><br><br>Thanks — we\'ll be in touch shortly to confirm your appointment.';
+  document.getElementById('bookingForm').parentNode.insertBefore(successMsg, document.getElementById('bookingForm'));
 }
 </script>
 
