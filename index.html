@@ -495,12 +495,7 @@
       </div>
     </div>
     <div class="form-wrap">
-      <form id="bookingForm" action="https://formsubmit.co/officeadmin@waihekewofcentre.co.nz" method="POST">
-        <input type="hidden" name="_subject" value="New Booking Request — Waiheke WoF Centre">
-        <input type="hidden" name="_captcha" value="false">
-        <input type="hidden" name="_template" value="table">
-        <input type="text" name="_honey" style="display:none">
-        <input type="hidden" name="_next" id="wofFormRedirect">
+      <form id="bookingForm" action="/api/book" method="POST">
         <div class="form-grid">
           <div class="form-group"><label class="form-label">Your Name *</label><input class="form-input" name="Name" placeholder="e.g. John Smith"></div>
           <div class="form-group"><label class="form-label">Phone Number *</label><input class="form-input" name="Phone" placeholder="e.g. 021 123 4567"></div>
@@ -513,6 +508,11 @@
         </div>
         <button type="submit" class="btn btn-primary">Send Booking Request</button>
       </form>
+      <div id="bookingSuccess" style="display:none;text-align:center;padding:48px 24px;">
+        <div style="font-size:3rem;margin-bottom:16px;">✅</div>
+        <h3 style="font-family:var(--font-serif);font-size:1.8rem;margin-bottom:12px;">Booking request sent!</h3>
+        <p style="color:var(--text-muted);font-size:1.05rem;">Thanks — we'll be in touch shortly to confirm your appointment.<br>Check your email for a confirmation.</p>
+      </div>
     </div>
   </section>
 
@@ -858,14 +858,44 @@ const revealObserver = new IntersectionObserver((entries) => {
 }, { threshold: 0.12 });
 document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-// Booking form redirect and success handling
-document.getElementById('wofFormRedirect').value = window.location.href;
-if (window.location.search.includes('submitted=true')) {
-  document.getElementById('bookingForm').style.display = 'none';
-  var successMsg = document.createElement('div');
-  successMsg.style.cssText = 'text-align:center;padding:48px 24px;font-size:1.2rem;color:var(--text);';
-  successMsg.innerHTML = '<strong style="font-size:1.5rem;">✅ Booking request sent!</strong><br><br>Thanks — we\'ll be in touch shortly to confirm your appointment.';
-  document.getElementById('bookingForm').parentNode.insertBefore(successMsg, document.getElementById('bookingForm'));
+// Booking form submission
+const bookingForm = document.getElementById('bookingForm');
+const bookingSuccess = document.getElementById('bookingSuccess');
+
+if (bookingForm) {
+  bookingForm.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const btn = bookingForm.querySelector('button[type="submit"]');
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
+
+    const data = {
+      name: bookingForm.querySelector('[name="Name"]').value,
+      phone: bookingForm.querySelector('[name="Phone"]').value,
+      email: bookingForm.querySelector('[name="Email"]')?.value || '',
+      vehicle: bookingForm.querySelector('[name="Vehicle"]').value,
+      service: bookingForm.querySelector('[name="Service"]').value,
+      details: bookingForm.querySelector('[name="Details"]')?.value || ''
+    };
+
+    try {
+      const res = await fetch('/api/book', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+      if (res.ok) {
+        bookingForm.style.display = 'none';
+        if (bookingSuccess) bookingSuccess.style.display = 'block';
+      } else {
+        throw new Error('Server error');
+      }
+    } catch(err) {
+      btn.textContent = 'Send Booking Request';
+      btn.disabled = false;
+      alert('Something went wrong. Please call us on 09 372 3270 or email officeadmin@waihekewofcentre.co.nz');
+    }
+  });
 }
 </script>
 
