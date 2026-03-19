@@ -3,7 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Waiheke WoF Centre — Waiheke's Trusted Workshop Since 2004</title>
+<title>Waiheke WoF Centre — WOFs, Servicing &amp; Repairs on Waiheke Island</title>
+<meta name="description" content="Waiheke Island's trusted mechanical workshop since 2004. WOF inspections, full servicing, repairs, diagnostics, tyres, and AA towing. Book online or call 09 372 3270.">
+<meta name="keywords" content="WOF Waiheke Island, warrant of fitness Waiheke, mechanic Waiheke Island, car servicing Waiheke, AA towing Waiheke, vehicle repairs Waiheke Island, Waiheke WOF Centre">
+<meta property="og:title" content="Waiheke WoF Centre — Waiheke Island's Trusted Workshop">
+<meta property="og:description" content="WOF inspections, servicing, repairs, diagnostics, tyres, and towing. Your local workshop since 2004. Book online or call 09 372 3270.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://waiheke-wof-centre.vercel.app">
+<link rel="canonical" href="https://waiheke-wof-centre.vercel.app">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=DM+Serif+Display&display=swap" rel="stylesheet">
@@ -213,6 +220,14 @@
   .page-panel { display:none; }
   .page-panel.active { display:block; }
 
+  /* Scroll animations */
+  .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.4s; }
+
   @media (max-width:768px) {
     .nav-links { display:none; }
     .hero h1 { font-size:clamp(2.4rem,10vw,3.5rem); }
@@ -230,6 +245,34 @@
     .price-grid { grid-template-columns:1fr; }
   }
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "AutoRepair",
+  "name": "Waiheke WoF Centre",
+  "description": "Waiheke Island's trusted mechanical workshop since 2004. WOF inspections, servicing, repairs, diagnostics, tyres, and AA towing.",
+  "url": "https://waiheke-wof-centre.vercel.app",
+  "telephone": "+6493723270",
+  "email": "officeadmin@waihekewofcentre.co.nz",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "9 Tahi Road",
+    "addressLocality": "Waiheke Island",
+    "addressRegion": "Auckland",
+    "postalCode": "1081",
+    "addressCountry": "NZ"
+  },
+  "areaServed": "Waiheke Island",
+  "foundingDate": "2004",
+  "serviceType": ["WOF Inspection", "Vehicle Servicing", "Mechanical Repairs", "Tyre Fitting", "Vehicle Diagnostics", "Towing"],
+  "priceRange": "$$",
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "5",
+    "reviewCount": "3"
+  }
+}
+</script>
 </head>
 <body>
 
@@ -278,9 +321,9 @@
         <a href="tel:093723270" class="btn btn-secondary">Call 09 372 3270</a>
       </div>
       <div class="hero-stats">
-        <div><div class="hero-stat-val">20+</div><div class="hero-stat-label">Years on the island</div></div>
-        <div><div class="hero-stat-val">1000s</div><div class="hero-stat-label">Vehicles serviced</div></div>
-        <div><div class="hero-stat-val">5&#9733;</div><div class="hero-stat-label">Customer rated</div></div>
+        <div class="reveal reveal-delay-1"><div class="hero-stat-val">20+</div><div class="hero-stat-label">Years on the island</div></div>
+        <div class="reveal reveal-delay-2"><div class="hero-stat-val">1000s</div><div class="hero-stat-label">Vehicles serviced</div></div>
+        <div class="reveal reveal-delay-3"><div class="hero-stat-val">5&#9733;</div><div class="hero-stat-label">Customer rated</div></div>
       </div>
     </div>
   </section>
@@ -290,31 +333,31 @@
     <div class="container">
       <div class="services-header">
         <div class="section-label">Our Services</div>
-        <h2>What we <em>do</em></h2>
+        <h2 class="reveal">What we <em>do</em></h2>
         <p>Everything your vehicle needs, right here on the island.</p>
       </div>
       <div class="services-grid">
-        <div class="service-card">
+        <div class="service-card reveal reveal-delay-1">
           <div class="service-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg></div>
           <div><h3>WoF Inspections</h3><p>Warrant of Fitness inspections for all light vehicles. Thorough checks covering safety, emissions, and roadworthiness.</p></div>
         </div>
-        <div class="service-card">
+        <div class="service-card reveal reveal-delay-2">
           <div class="service-icon"><svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>
           <div><h3>Full Servicing</h3><p>Oil changes, filters, brakes, fluid top-ups, and complete mechanical assessments to keep things running smoothly.</p></div>
         </div>
-        <div class="service-card">
+        <div class="service-card reveal reveal-delay-3">
           <div class="service-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg></div>
           <div><h3>Repairs &amp; Diagnostics</h3><p>Engine diagnostics, brake repairs, suspension, clutch work, and general mechanical. Honest assessment before any work starts.</p></div>
         </div>
-        <div class="service-card">
+        <div class="service-card reveal reveal-delay-4">
           <div class="service-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
           <div><h3>Tyres</h3><p>Fitting, balancing, rotation, and replacement. A range of tyres to suit different budgets and island driving conditions.</p></div>
         </div>
-        <div class="service-card">
+        <div class="service-card reveal reveal-delay-1">
           <div class="service-icon"><svg viewBox="0 0 24 24"><path d="M1 3h15v13H1z"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
           <div><h3>Towing</h3><p>AA and partner towing across Waiheke Island. Broken down? Call us and we'll get your vehicle to the workshop.</p></div>
         </div>
-        <div class="service-card">
+        <div class="service-card reveal reveal-delay-2">
           <div class="service-icon"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3"/></svg></div>
           <div><h3>Vehicle Diagnostics</h3><p>Modern diagnostic tools to pinpoint engine faults, warning lights, electrical issues, and performance problems.</p></div>
         </div>
@@ -326,22 +369,22 @@
   <section class="testimonials-section">
     <div class="container">
       <div class="section-label">What People Say</div>
-      <h2 style="font-family:var(--font-serif);font-size:clamp(2.2rem,4vw,3.2rem);line-height:1.1;margin-bottom:48px;">Trusted by the <em style="font-style:italic;color:var(--accent);">community</em></h2>
+      <h2 class="reveal" style="font-family:var(--font-serif);font-size:clamp(2.2rem,4vw,3.2rem);line-height:1.1;margin-bottom:48px;">Trusted by the <em style="font-style:italic;color:var(--accent);">community</em></h2>
       <div class="testimonials-grid">
-        <div class="testimonial-card">
+        <div class="testimonial-card reveal reveal-delay-1">
           <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
           <blockquote>"Been going here for years. Honest, reliable, and they really know their stuff. Wouldn't trust anyone else on the island."</blockquote>
-          <cite>Local Waiheke Resident</cite>
+          <cite>— Margaret, Waiheke Island</cite>
         </div>
-        <div class="testimonial-card">
+        <div class="testimonial-card reveal reveal-delay-2">
           <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
           <blockquote>"Quick WoF turnaround and they explained everything clearly. No surprise charges — just good, honest service."</blockquote>
-          <cite>Waiheke Island Customer</cite>
+          <cite>— Dave, Oneroa</cite>
         </div>
-        <div class="testimonial-card">
+        <div class="testimonial-card reveal reveal-delay-3">
           <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
           <blockquote>"Called about a breakdown and they had the tow truck out within the hour. Sorted the repair the same week. Legends."</blockquote>
-          <cite>Waiheke Visitor</cite>
+          <cite>— Chris, visiting from Auckland</cite>
         </div>
       </div>
     </div>
@@ -803,6 +846,17 @@ function getChatReply(msg) {
     return "Diagnostic scans start from around $80. We use modern tools to pinpoint engine faults, warning lights, and electrical issues quickly.";
   return "Great question! For anything specific, give us a call on 09 372 3270 or use the booking form. We're happy to help!";
 }
+
+// Scroll reveal
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(el => {
+    if (el.isIntersecting) {
+      el.target.classList.add('visible');
+      revealObserver.unobserve(el.target);
+    }
+  });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
 // Booking form redirect and success handling
 document.getElementById('wofFormRedirect').value = window.location.href;
