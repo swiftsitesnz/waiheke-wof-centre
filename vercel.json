@@ -6,8 +6,5 @@
     "api/*.js": {
       "runtime": "nodejs20.x"
     }
-  },
-  "env": {
-    "RESEND_API_KEY": "re_WYxGRiaw_DFLftk3f6uqVNxr61snegQuV"
   }
 }
